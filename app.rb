@@ -35,7 +35,10 @@ get("/payment/new") do
     @APR = params.fetch("user_apr").to_f
     @num_years = params.fetch("user_years").to_i
     @principal = params.fetch("user_pv").to_f
-    @payment = 0
+    monthly_rate = @APR/100/12
+    @numerator = monthly_rate * @principal
+    @denominator = (1-(1+monthly_rate) ** (-@num_years*12))
+    @payment = @numerator / @denominator
   erb(:payment_results)
   end
 
