@@ -4,7 +4,7 @@ require "sinatra/reloader"
 #rakegrade 3waisvokTmjsMiMGnsL2XT6K
 
 get("/") do
-erb(:square)
+erb(:root)
 end
 
 get("/square/new") do
